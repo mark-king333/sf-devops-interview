@@ -32,10 +32,12 @@ jobs:
               uses: actions/checkout@v4
 
             - name: 'Install Build Dependencies'
-              run: npm install
+              run: |
+                  npm install
+                  npm install --save-dev prettier prettier-plugin-apex
 
             - name: 'Verify code formatting'
-              run: npx prettier --check "force-app/**/*.cls"
+              run: npx prettier --plugin=prettier-plugin-apex --check "force-app/**/*.cls"
 
             - name: 'Set Connected App Secrets'
               if: github.event_name == 'push'
