@@ -27,13 +27,12 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: 20
-                  cache: 'npm'
 
             - name: 'Checkout source code'
               uses: actions/checkout@v4
 
             - name: 'Install Build Dependencies'
-              run: npm ci
+              run: npm install
 
             - name: 'Verify code formatting'
               run: npx prettier --check "force-app/**/*.cls"
