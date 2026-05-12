@@ -29,11 +29,11 @@ jobs:
                   node-version: 20
                   cache: 'npm'
 
-            - name: 'Install Build Dependencies'
-              run: npm ci
-
             - name: 'Checkout source code'
               uses: actions/checkout@v4
+
+            - name: 'Install Build Dependencies'
+              run: npm ci
 
             - name: 'Verify code formatting'
               run: npx prettier --check "force-app/**/*.cls"
@@ -45,7 +45,6 @@ jobs:
                   sed -i "s/CREDCHECK_CLIENT_ID/${{ secrets.CREDCHECK_CLIENT_ID }}/g" $FILE_PATH
                   sed -i "s/CREDCHECK_CLIENT_SECRET/${{ secrets.CREDCHECK_CLIENT_SECRET }}/g" $FILE_PATH
                   echo "Updated metadata:"
-                  cat $FILE_PATH
 
             - name: 'Convert to MDAPI format'
               run: |
